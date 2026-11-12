@@ -12,6 +12,21 @@ Sito ufficiale del **Regolamento e delle Linee guida del Corpo Docenti di Hogwar
 - **Gestisci regolamento**: accesso con password, modifica dei titoli, delle regole e della premessa, creazione/eliminazione/riordino di capitoli.
 - Bozza e backup, più pubblicazione online sul ramo `main`.
 
+## Alternativa semplificata: pubblicazione tramite Vercel
+
+Il repository contiene ora anche la versione del servizio dedicata a **Vercel** (`api/login.js`, `api/document.js`). Vercel può ospitare il sito e le due funzioni di autenticazione, mentre l'indirizzo GitHub Pages resta quello visibile agli utenti.
+
+1. Collega l'app **Vercel** in ChatGPT e autorizzala a gestire il repository `Razor5489/Regolamento-professori`.
+2. Importa o distribuisci questo repository come progetto Vercel, senza modificare la cartella root.
+3. Nelle variabili d'ambiente protette del progetto configura `ADMIN_PASSWORD` (password personale da te scelta) e `GITHUB_TOKEN` (token fine-grained limitato al repository, permesso **Contents: Read and write**). **Non inserire mai queste credenziali in un file pubblico o in chat.**
+4. Collega l'URL HTTPS assegnato da Vercel nel file `config.json`, campo `apiUrl`. Per esempio: `{"apiUrl":"https://nome-progetto.vercel.app"}` (solo esempio, occorre l'URL effettivo).
+
+Il sistema userà direttamente la password, come la Biblioteca. Gli utenti vedranno il sito pubblico da GitHub Pages, mentre la modifica passerà dal backend Vercel.
+
+La password attuale della Biblioteca non è leggibile dal suo repository. Per usare la **stessa password**, dovrai impostare tu lo stesso valore segreto nel nuovo servizio. Questa procedura non richiede di comunicare la password all'assistente.
+
+---
+
 ### Importante: attivazione dell'accesso con password
 
 Il pulsante ora richiede una **password**, non più un Personal Access Token GitHub. Per evitare che la password sia visibile a chiunque (il repository è pubblico), l'autenticazione deve essere eseguita da un backend protetto.
