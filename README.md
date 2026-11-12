@@ -1,15 +1,17 @@
 # NIGHTFALL RP · Regolamento Professori
 
-Il regolamento e le linee guida del Corpo Docenti di Hogwarts (1890).
+I regolamenti del Corpo Docenti e dell'intera comunità scolastica di Hogwarts (1890), con le linee guida per i professori.
 
 **Sito pubblico:** https://razor5489.github.io/Regolamento-professori/
 
 ## Cosa offre il sito
 
-- 8 capitoli di regolamento, 10 capitoli di linee guida.
+- Regolamento Professori: 8 capitoli.
+- Linee guida del Corpo Docenti: 10 capitoli.
+- Regolamento Interno Scolastico: 10 capitoli, 27 articoli e tre livelli di infrazioni disciplinari.
 - Indice, ricerca e stampa/PDF.
 - Pulsante **Gestisci regolamento** con accesso tramite **password**.
-- Editor per modificare, aggiungere, cancellare e riordinare capitoli.
+- Editor per modificare, aggiungere, cancellare e riordinare capitoli e articoli di tutte e tre le sezioni.
 - Bozze, backup JSON e pubblicazione nel repository GitHub.
 
 ## Attivare la gestione con password
