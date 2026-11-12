@@ -232,6 +232,342 @@
           ]
         }
       ]
+    },
+    {
+      "id": "regolamento-scolastico",
+      "label": "Regolamento scolastico",
+      "kicker": "Emanato dalla Presidenza di Hogwarts · Applicabile a tutti gli studenti e membri del personale scolastico",
+      "title": "Regolamento Interno Scolastico",
+      "description": "Norme di comportamento, disciplina e convivenza per l’intera comunità scolastica di Hogwarts.",
+      "preface": "Il presente Regolamento Interno disciplina la vita scolastica all'interno di Hogwarts, stabilendo norme di comportamento, disciplina e convivenza necessarie a garantire un ambiente sicuro, ordinato e rispettoso.\n\nLe disposizioni relative alla disciplina e alle sanzioni contenute nel presente regolamento sono rivolte principalmente agli studenti. Il personale scolastico è tenuto a rispettare i propri obblighi professionali e le disposizioni della Presidenza, secondo le procedure previste per il proprio ruolo.\n\nOgni studente è tenuto a conoscere e rispettare il presente regolamento. L'ignoranza delle norme non costituisce giustificazione per la loro violazione.\n\nIl rispetto delle regole costituisce parte integrante della formazione di ogni giovane strega e mago.",
+      "closing": "Per Hogwarts e per la sicurezza della sua comunità.\nLa Presidenza · La Vicepresidenza",
+      "sections": [
+        {
+          "id": "s-art-01",
+          "chapter": "I — GERARCHIA SCOLASTICA",
+          "icon": "📜",
+          "title": "Art. 1 — Autorità scolastica",
+          "intro": "La comunità scolastica di Hogwarts è organizzata secondo il seguente ordine gerarchico:",
+          "points": [
+            "Preside → Vicepreside → Docenti → Caposcuola e Prefetti → Studenti"
+          ],
+          "outro": "Ogni membro della scuola è tenuto a rispettare le disposizioni impartite dalle autorità scolastiche competenti."
+        },
+        {
+          "id": "s-art-02",
+          "chapter": "I — GERARCHIA SCOLASTICA",
+          "icon": "📜",
+          "title": "Art. 2 — Preside e Vicepreside",
+          "intro": "Il Preside rappresenta la massima autorità della scuola.\n\nIl Vicepreside collabora direttamente con il Preside e ne supporta l’attività nella gestione della scuola e della disciplina.\n\nIn assenza del Preside, il Vicepreside ne assume le funzioni necessarie alla gestione ordinaria dell’istituto.",
+          "points": [],
+          "outro": ""
+        },
+        {
+          "id": "s-art-03",
+          "chapter": "I — GERARCHIA SCOLASTICA",
+          "icon": "📜",
+          "title": "Art. 3 — Corpo docente e rappresentanti degli studenti",
+          "intro": "I Docenti sono responsabili dello svolgimento delle lezioni e del mantenimento dell’ordine durante le attività didattiche.\n\nCaposcuola e Prefetti collaborano con il personale scolastico nel mantenimento dell’ordine e nel rispetto delle regole.\n\nGli Studenti sono tenuti a rispettare le disposizioni impartite dal personale scolastico.",
+          "points": [],
+          "outro": ""
+        },
+        {
+          "id": "s-art-04",
+          "chapter": "II — NORME GENERALI DI COMPORTAMENTO",
+          "icon": "📜",
+          "title": "Art. 4 — Rispetto della comunità scolastica",
+          "intro": "Ogni membro della comunità scolastica è tenuto a mantenere un comportamento rispettoso nei confronti di:",
+          "points": [
+            "studenti;",
+            "professori;",
+            "Prefetti;",
+            "Caposcuola;",
+            "Vicepreside;",
+            "Preside;",
+            "personale scolastico."
+          ],
+          "outro": "Sono vietati insulti, provocazioni, minacce, discriminazioni e qualsiasi comportamento volto a umiliare o intimidire un altro membro della scuola."
+        },
+        {
+          "id": "s-art-05",
+          "chapter": "II — NORME GENERALI DI COMPORTAMENTO",
+          "icon": "📜",
+          "title": "Art. 5 — Comportamento durante le lezioni",
+          "intro": "Durante le lezioni gli studenti devono:",
+          "points": [
+            "mantenere un comportamento ordinato;",
+            "seguire le indicazioni del docente;",
+            "non interrompere volontariamente la lezione;",
+            "non utilizzare la magia senza autorizzazione;",
+            "non disturbare i compagni;",
+            "rispettare il materiale scolastico."
+          ],
+          "outro": "Il professore ha piena autorità all’interno della propria aula e può richiamare lo studente che comprometta il regolare svolgimento della lezione."
+        },
+        {
+          "id": "s-art-06",
+          "chapter": "II — NORME GENERALI DI COMPORTAMENTO",
+          "icon": "📜",
+          "title": "Art. 6 — Presenza e partecipazione",
+          "intro": "Gli studenti sono tenuti a partecipare alle attività didattiche previste dal proprio anno scolastico.\n\nAssenze ripetute e ingiustificate potranno essere segnalate alla Vicepresidenza.",
+          "points": [],
+          "outro": ""
+        },
+        {
+          "id": "s-art-07",
+          "chapter": "III — ORDINE E DISCIPLINA",
+          "icon": "📜",
+          "title": "Art. 7 — Rispetto delle disposizioni",
+          "intro": "Le disposizioni impartite dal personale scolastico devono essere rispettate quando riguardano la sicurezza, l’ordine e il regolare svolgimento della vita scolastica.\n\nLa disobbedienza deliberata costituisce infrazione disciplinare.",
+          "points": [],
+          "outro": ""
+        },
+        {
+          "id": "s-art-08",
+          "chapter": "III — ORDINE E DISCIPLINA",
+          "icon": "📜",
+          "title": "Art. 8 — Condotta fuori dalle lezioni",
+          "intro": "Gli studenti devono mantenere un comportamento conforme alle regole della scuola anche al di fuori delle aule.\n\nEssere fuori dall’orario di lezione non esonera dal rispetto del presente regolamento.",
+          "points": [],
+          "outro": ""
+        },
+        {
+          "id": "s-art-09",
+          "chapter": "IV — UTILIZZO DELLA MAGIA",
+          "icon": "📜",
+          "title": "Art. 9 — Uso responsabile della magia",
+          "intro": "La magia deve essere utilizzata con responsabilità e secondo gli insegnamenti ricevuti.\n\nÈ vietato rivolgere incantesimi contro un altro studente, salvo nei seguenti casi:",
+          "points": [
+            "durante attività didattiche o esercitazioni espressamente autorizzate;",
+            "in situazioni di legittima difesa;",
+            "in situazioni di emergenza nelle quali l'intervento magico sia necessario per proteggere sé stessi o altre persone."
+          ],
+          "outro": "L'uso della magia al di fuori dei casi sopra indicati potrà costituire infrazione disciplinare, in relazione alla natura e alle conseguenze dell'azione."
+        },
+        {
+          "id": "s-art-10",
+          "chapter": "IV — UTILIZZO DELLA MAGIA",
+          "icon": "📜",
+          "title": "Art. 10 — Duelli",
+          "intro": "I duelli tra studenti sono consentiti esclusivamente durante attività autorizzate dalla scuola e nelle aree designate.\n\nSono vietati duelli improvvisati nei corridoi, nei dormitori, nelle sale comuni e nelle altre aree non autorizzate.",
+          "points": [],
+          "outro": ""
+        },
+        {
+          "id": "s-art-11",
+          "chapter": "IV — UTILIZZO DELLA MAGIA",
+          "icon": "📜",
+          "title": "Art. 11 — Magia oscura",
+          "intro": "L'utilizzo di magia oscura all'interno della scuola è vietato.\n\nÈ vietato utilizzare magia oscura al di fuori delle attività autorizzate, in particolare contro altri studenti o membri del personale.",
+          "points": [],
+          "outro": ""
+        },
+        {
+          "id": "s-art-12",
+          "chapter": "V — AREE DEL CASTELLO",
+          "icon": "📜",
+          "title": "Art. 12 — Aree riservate",
+          "intro": "È vietato accedere senza autorizzazione alle aree dichiarate riservate dalla scuola.\n\nTra queste possono rientrare:",
+          "points": [
+            "uffici del personale;",
+            "laboratori;",
+            "archivi;",
+            "sezioni riservate della biblioteca;",
+            "aree espressamente dichiarate proibite."
+          ],
+          "outro": ""
+        },
+        {
+          "id": "s-art-13",
+          "chapter": "V — AREE DEL CASTELLO",
+          "icon": "📜",
+          "title": "Art. 13 — Divieto di intrusione",
+          "intro": "L'ingresso non autorizzato in un'area riservata costituisce infrazione disciplinare.\n\nLa natura dell'infrazione e l'eventuale sanzione saranno valutate in base alle circostanze e alle modalità dell'accesso.",
+          "points": [],
+          "outro": ""
+        },
+        {
+          "id": "s-art-14",
+          "chapter": "V — AREE DEL CASTELLO",
+          "icon": "📜",
+          "title": "Art. 14 — Sale comuni delle Case",
+          "intro": "Le sale comuni e gli spazi riservati alle singole Case sono destinati esclusivamente agli studenti appartenenti alla rispettiva Casa.\n\nÈ vietato agli studenti introdurre o accompagnare volontariamente membri di altre Case all'interno delle proprie aree comuni, salvo autorizzazione espressa da parte del personale scolastico.\n\nL'accesso non autorizzato alle aree comuni di un'altra Casa costituisce infrazione disciplinare, indipendentemente dall'orario in cui avviene.\n\nLe disposizioni del presente articolo si applicano anche durante il giorno e non esclusivamente durante il coprifuoco.",
+          "points": [],
+          "outro": ""
+        },
+        {
+          "id": "s-art-15",
+          "chapter": "VI — OGGETTI E SOSTANZE",
+          "icon": "📜",
+          "title": "Art. 15 — Oggetti pericolosi",
+          "intro": "È vietato introdurre o possedere all'interno della scuola oggetti considerati pericolosi o non autorizzati.\n\nIl personale scolastico può procedere al sequestro temporaneo di tali oggetti qualora lo ritenga necessario per garantire la sicurezza della comunità scolastica.",
+          "points": [],
+          "outro": ""
+        },
+        {
+          "id": "s-art-16",
+          "chapter": "VI — OGGETTI E SOSTANZE",
+          "icon": "📜",
+          "title": "Art. 16 — Pozioni e ingredienti",
+          "intro": "Pozioni, ingredienti e sostanze devono essere utilizzati esclusivamente per scopi autorizzati.\n\nL'utilizzo improprio o la distribuzione non autorizzata potrà comportare provvedimenti disciplinari.",
+          "points": [],
+          "outro": ""
+        },
+        {
+          "id": "s-art-17",
+          "chapter": "VI — OGGETTI E SOSTANZE",
+          "icon": "📜",
+          "title": "Art. 17 — Possesso e utilizzo delle bacchette",
+          "intro": "La bacchetta magica è un oggetto personale e non può essere sottratta, utilizzata o maneggiata da un altro studente senza il consenso del legittimo proprietario.\n\nLa sottrazione o l'utilizzo non autorizzato della bacchetta di un'altra persona costituisce infrazione disciplinare e, in caso di utilizzo contro il proprietario o altre persone, potrà essere considerata un'infrazione più grave.\n\nUn membro del personale scolastico può disporre il ritiro temporaneo della bacchetta di uno studente qualora ciò sia necessario per motivi disciplinari, di sicurezza o per impedire un uso improprio della magia.\n\nLa bacchetta ritirata dovrà essere custodita dal personale autorizzato e restituita secondo le disposizioni stabilite dall'autorità scolastica competente.",
+          "points": [],
+          "outro": ""
+        },
+        {
+          "id": "s-art-18",
+          "chapter": "VII — INFRAZIONI DISCIPLINARI",
+          "icon": "📜",
+          "title": "Art. 18 — Valutazione delle infrazioni",
+          "intro": "La sanzione disciplinare deve essere proporzionata alla gravità dell'infrazione.\n\nNella determinazione del provvedimento saranno valutati, in particolare:",
+          "points": [
+            "la gravità del comportamento;",
+            "la volontarietà dell'azione;",
+            "le circostanze in cui si è verificato il fatto;",
+            "le conseguenze provocate;",
+            "l'eventuale pericolo arrecato a persone o proprietà;",
+            "la collaborazione dello studente nell'accertamento dei fatti;",
+            "eventuali precedenti disciplinari e la recidiva."
+          ],
+          "outro": "Un'infrazione commessa accidentalmente o per errore può pertanto comportare un provvedimento differente rispetto alla stessa infrazione commessa intenzionalmente."
+        },
+        {
+          "id": "s-level-1",
+          "chapter": "VII — INFRAZIONI DISCIPLINARI",
+          "icon": "⚖️",
+          "title": "Livello I — Infrazioni lievi",
+          "intro": "Comprendono, a titolo esemplificativo:",
+          "points": [
+            "disturbo della lezione;",
+            "comportamento rumoroso;",
+            "mancato rispetto di disposizioni minori;",
+            "violazioni occasionali del regolamento."
+          ],
+          "outro": "Possibili provvedimenti:\n• richiamo verbale;\n• ammonimento;\n• perdita di punti;\n• detenzione."
+        },
+        {
+          "id": "s-level-2",
+          "chapter": "VII — INFRAZIONI DISCIPLINARI",
+          "icon": "⚖️",
+          "title": "Livello II — Infrazioni gravi",
+          "intro": "Comprendono:",
+          "points": [
+            "reiterazione di infrazioni lievi;",
+            "disobbedienza deliberata;",
+            "accesso non autorizzato ad aree riservate;",
+            "duelli non autorizzati;",
+            "danneggiamento della proprietà scolastica;",
+            "minacce o intimidazioni;",
+            "utilizzo non autorizzato della bacchetta di un'altra persona."
+          ],
+          "outro": "Possibili provvedimenti:\n• perdita di punti;\n• detenzione;\n• convocazione presso la Vicepresidenza;\n• sospensione da determinate attività;\n• ulteriori provvedimenti proporzionati alla gravità del fatto."
+        },
+        {
+          "id": "s-level-3",
+          "chapter": "VII — INFRAZIONI DISCIPLINARI",
+          "icon": "⚖️",
+          "title": "Livello III — Infrazioni gravissime",
+          "intro": "Comprendono:",
+          "points": [
+            "aggressioni intenzionali;",
+            "utilizzo gravemente irresponsabile della magia;",
+            "utilizzo non autorizzato di magia oscura;",
+            "messa in pericolo deliberata di studenti o personale;",
+            "gravi atti di sabotaggio;",
+            "reiterazione di gravi infrazioni."
+          ],
+          "outro": "Possibili provvedimenti:\n• sospensione temporanea dalla scuola;\n• espulsione definitiva;\n• ulteriori provvedimenti stabiliti dalla Presidenza."
+        },
+        {
+          "id": "s-art-19",
+          "chapter": "VIII — PROCEDIMENTO DISCIPLINARE",
+          "icon": "📜",
+          "title": "Art. 19 — Accertamento",
+          "intro": "Prima dell'applicazione di una sanzione grave, ove possibile, saranno accertati i fatti e ascoltate le parti coinvolte.",
+          "points": [],
+          "outro": ""
+        },
+        {
+          "id": "s-art-20",
+          "chapter": "VIII — PROCEDIMENTO DISCIPLINARE",
+          "icon": "📜",
+          "title": "Art. 20 — Proporzionalità della sanzione",
+          "intro": "Nessuna infrazione comporta automaticamente una determinata sanzione.\n\nIl provvedimento viene stabilito dall'autorità competente tenendo conto della gravità del fatto, delle circostanze, dell'intenzionalità, delle conseguenze e degli eventuali precedenti disciplinari.",
+          "points": [],
+          "outro": ""
+        },
+        {
+          "id": "s-art-21",
+          "chapter": "VIII — PROCEDIMENTO DISCIPLINARE",
+          "icon": "📜",
+          "title": "Art. 21 — Recidiva",
+          "intro": "La ripetizione della stessa infrazione o di infrazioni differenti potrà comportare un aggravamento della sanzione.",
+          "points": [],
+          "outro": ""
+        },
+        {
+          "id": "s-art-22",
+          "chapter": "VIII — PROCEDIMENTO DISCIPLINARE",
+          "icon": "📜",
+          "title": "Art. 22 — Diritto di essere ascoltati",
+          "intro": "Lo studente coinvolto in un procedimento disciplinare ha diritto di esporre la propria versione dei fatti.\n\nLa decisione finale spetta all'autorità scolastica competente.",
+          "points": [],
+          "outro": ""
+        },
+        {
+          "id": "s-art-23",
+          "chapter": "IX — RAPPORTI CON IL PERSONALE",
+          "icon": "📜",
+          "title": "Art. 23 — Rispetto dei docenti",
+          "intro": "Il ruolo del docente deve essere rispettato durante le attività scolastiche.\n\nEventuali contestazioni riguardanti un docente devono essere presentate alla Vicepresidenza o alla Presidenza attraverso le modalità previste.",
+          "points": [],
+          "outro": ""
+        },
+        {
+          "id": "s-art-24",
+          "chapter": "IX — RAPPORTI CON IL PERSONALE",
+          "icon": "📜",
+          "title": "Art. 24 — Provvedimenti dei docenti",
+          "intro": "I docenti possono adottare provvedimenti disciplinari di lieve entità.\n\nPer le infrazioni più gravi, il caso dovrà essere sottoposto alla Vicepresidenza.",
+          "points": [],
+          "outro": ""
+        },
+        {
+          "id": "s-art-25",
+          "chapter": "X — DISPOSIZIONI FINALI",
+          "icon": "📜",
+          "title": "Art. 25 — Interpretazione del regolamento",
+          "intro": "In caso di situazioni non espressamente previste dal presente regolamento, la decisione spetta alla Presidenza e alla Vicepresidenza, tenendo conto dello spirito delle norme esistenti.",
+          "points": [],
+          "outro": ""
+        },
+        {
+          "id": "s-art-26",
+          "chapter": "X — DISPOSIZIONI FINALI",
+          "icon": "📜",
+          "title": "Art. 26 — Modifiche",
+          "intro": "Il presente regolamento può essere modificato dalla Presidenza qualora esigenze organizzative, didattiche o disciplinari lo rendano necessario.",
+          "points": [],
+          "outro": ""
+        },
+        {
+          "id": "s-art-27",
+          "chapter": "X — DISPOSIZIONI FINALI",
+          "icon": "📜",
+          "title": "Art. 27 — Entrata in vigore",
+          "intro": "Il presente regolamento entra in vigore dalla data della sua pubblicazione ed è vincolante per tutti gli studenti e membri della comunità scolastica.",
+          "points": [],
+          "outro": ""
+        }
+      ]
     }
   ]
 }
