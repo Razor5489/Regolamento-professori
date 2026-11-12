@@ -288,9 +288,10 @@ $("loginForm").onsubmit=async event => {
   const remote=await loadFromGitHub();
   if(dirty() && JSON.stringify(published)!==JSON.stringify(remote.content))
    throw new Error("Il documento online è cambiato durante la tua bozza. Esporta un backup prima di ricaricare il sito.");
+  const hadDraft = !!dirty();
   blobSha=remote.sha;
   published=clone(remote.content);
-  if(!dirty()) state=clone(remote.content);
+  if(!hadDraft) state=clone(remote.content);
   $("authGate").hidden=true;$("editorPanel").hidden=false;
   fillEditor();render();setStatus("Accesso riuscito. Puoi preparare modifiche e pubblicarle su GitHub.");
  }catch(error) {
