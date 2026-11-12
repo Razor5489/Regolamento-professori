@@ -2,30 +2,77 @@
 
 Sito ufficiale del **Regolamento e delle Linee guida del Corpo Docenti di Hogwarts (1890)**.
 
-## Pubblicazione con GitHub Pages
-1. Apri **Settings → Pages** in questo repository.
-2. In **Build and deployment**, seleziona **Deploy from a branch**.
-3. Imposta **main** e la cartella **/(root)**, poi salva.
-4. Il sito sarà disponibile all'indirizzo https://razor5489.github.io/Regolamento-professori/
+- Sito pubblico: https://razor5489.github.io/Regolamento-professori/
+- Repository: https://github.com/Razor5489/Regolamento-professori
 
-## Modificare il regolamento dal sito
-Il pulsante **Gestisci regolamento** apre l'editor. Puoi aggiungere, cambiare ordine, modificare ed eliminare le sezioni, sia nel Regolamento sia nelle Linee guida.
+## Funzioni
 
-Per pubblicare le modifiche serve un **Personal Access Token (fine-grained)** GitHub appartenente a un account autorizzato:
-- GitHub → Settings → Developer settings → Personal access tokens → Fine-grained tokens → Generate new token.
-- **Repository access:** Only select repositories → `Regolamento-professori`.
-- **Repository permissions:** Contents → Read and write. L'accesso Metadata in lettura è implicito.
-- Inserisci il token nel modulo di gestione del sito; premi **Pubblica online**.
+- Regolamento completo e dieci capitoli di linee guida.
+- Ricerca, indice dei capitoli, stampa e salvataggio in PDF.
+- **Gestisci regolamento**: accesso con password, modifica dei titoli, delle regole e della premessa, creazione/eliminazione/riordino di capitoli.
+- Bozza e backup, più pubblicazione online sul ramo `main`.
 
-Il token resta **solo nella memoria della pagina**, non viene inserito nel repository né salvato in localStorage. È inviato esclusivamente alle API ufficiali `api.github.com` per leggere e aggiornare `regolamento.json`. Non condividere il token e revocalo se viene esposto. Chiunque non abbia i permessi GitHub può leggere il regolamento ma non modificarlo.
+### Importante: attivazione dell'accesso con password
 
-Le modifiche creano un commit sul ramo `main` e diventano pubbliche dopo l'aggiornamento di GitHub Pages. Se due persone modificano contemporaneamente, l'editor blocca la pubblicazione per evitare sovrascritture.
+Il pulsante ora richiede una **password**, non più un Personal Access Token GitHub. Per evitare che la password sia visibile a chiunque (il repository è pubblico), l'autenticazione deve essere eseguita da un backend protetto.
 
-## Struttura
-- `index.html`: sito pubblico ed editor integrato.
-- `regolamento.json`: contenuti modificabili.
+Il backend è già preparato in `worker/index.js`, ma **non si attiva da solo con il caricamento su GitHub**. Occorre distribuirlo una volta su Cloudflare Workers e aggiungere due segreti.
+
+### 1. Creare un Worker Cloudflare
+
+1. Accedi al tuo account su https://dash.cloudflare.com/ (puoi crearne uno se necessario).
+2. Apri **Workers & Pages**, scegli **Create** e crea un Worker (ad esempio `nightfall-professori-api`).
+3. Nell'editor del Worker sostituisci il codice con **tutto il contenuto del file** `worker/index.js` presente in questo repository.
+4. Pubblica il Worker. Ottieni un URL HTTPS simile a `https://nightfall-professori-api.<tuo-sottodominio>.workers.dev`. L'URL vero ti verrà mostrato da Cloudflare; non usare l'esempio letterale.
+
+In alternativa, chi usa Wrangler può eseguire dalla cartella `worker/` il comando `npx wrangler deploy`.
+
+### 2. Impostare la password e il token GitHub come segreti
+
+Apri le impostazioni del Worker, quindi **Settings → Variables and Secrets** (la denominazione può variare) e aggiungi due valori di tipo **Secret**:
+
+- `ADMIN_PASSWORD` = la password di accesso al pannello, scelta da te (può essere la stessa della Biblioteca, senza comunicarla ad altri).
+- `GITHUB_TOKEN` = un token GitHub fine-grained, autorizzato a modificare soltanto il repository `Regolamento-professori`.
+
+Per creare il token:
+1. Vai su GitHub → **Settings → Developer settings → Personal access tokens → Fine-grained tokens**.
+2. Seleziona **Only select repositories** e spunta **Regolamento-professori**.
+3. In **Repository permissions**, imposta **Contents → Read and write**. La lettura dei metadata è concessa automaticamente.
+4. Crea il token e incollalo **soltanto nel segreto `GITHUB_TOKEN` del Worker**, mai nel repository, nella pagina web o nella chat.
+
+Utilizza una password lunga e unica. Per ulteriore sicurezza, configura in Cloudflare una regola di limitazione dei tentativi di accesso al percorso `/api/login`.
+
+### 3. Collegare il Worker al sito
+
+1. Apri il file `config.json` nel repository su GitHub e scegli **Edit**.
+2. Sostituisci il valore vuoto di `apiUrl` con **l'URL HTTPS reale del Worker**:
+
+```json
+{
+  "apiUrl": "https://IL-TUO-WORKER.workers.dev"
+}
+```
+
+3. Salva con **Commit changes** e aspetta l'aggiornamento di GitHub Pages.
+4. Apri il sito e scegli **Gestisci regolamento**. Inserisci `ADMIN_PASSWORD` (non il token GitHub), apporta una modifica e premi **Pubblica online**.
+
+La password è verificata dal Worker e resta soltanto nella memoria della pagina finché è aperta. **Non è contenuta nell'HTML, nel JavaScript pubblico, in `config.json` o nel repository**. Il token GitHub non viene mai inviato al browser.
+
+### 4. Attivare GitHub Pages (se non è già attivo)
+
+1. Apri **Settings → Pages** nel repository.
+2. In **Build and deployment**, scegli **Deploy from a branch**.
+3. Seleziona **main** e **/(root)**, quindi salva.
+
+### Struttura dei file
+
+- `index.html`: sito pubblico e pannello di modifica.
+- `regolamento.json`: contenuti del regolamento e delle linee guida.
+- `config.json`: URL pubblico del backend, **non** la password.
+- `worker/index.js`: backend Cloudflare Worker, verifica della password e pubblicazione su GitHub.
+- `worker/wrangler.toml`: configurazione Wrangler opzionale.
 - `.nojekyll`: compatibilità con GitHub Pages.
 
-Il sito non usa script di terze parti, non contiene password o token, e non richiede un server applicativo.
+**Nota:** senza distribuire il Worker e compilare `config.json`, il sito pubblico resta consultabile e il pannello mostra un messaggio che spiega che il servizio password non è ancora configurato. Questo evita una falsa protezione basata su password scritte nel codice pubblico.
 
 *Creato per NightFall da Razor.*
