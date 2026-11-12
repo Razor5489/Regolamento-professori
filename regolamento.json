@@ -1,0 +1,237 @@
+{
+  "version": 1,
+  "updatedAt": "2026-11-12",
+  "school": "Scuola di Magia e Stregoneria di Hogwarts",
+  "era": "Anno 1890",
+  "preface": "Il ruolo di professore non si limita all’insegnamento di una materia, ma comprende la responsabilità di contribuire attivamente alla crescita degli studenti e alla qualità del Roleplay all’interno di Hogwarts. Ogni docente è tenuto a seguire le presenti disposizioni, garantendo serietà, collaborazione e rispetto nei confronti degli studenti e dei colleghi.",
+  "footer": "La Direzione Scolastica — Nightfall RP",
+  "pages": [
+    {
+      "id": "regolamento",
+      "label": "Regolamento",
+      "kicker": "Norme del Corpo Docenti",
+      "title": "Il regolamento dei professori",
+      "description": "Disposizioni organizzative e comportamentali per professori titolari e supplenti di Hogwarts. Il regolamento integra le norme generali di Nightfall RP.",
+      "sections": [
+        {
+          "id": "r-1",
+          "icon": "📜",
+          "title": "Ruolo e responsabilità",
+          "intro": "Il professore rappresenta la scuola e contribuisce alla qualità dell’esperienza Roleplay.",
+          "points": [
+            "Mantenere un comportamento rispettoso e coerente con il proprio incarico, tanto IC quanto OOC.",
+            "Rispettare la lore del server, l’ambientazione del 1890 e la Riforma Hawthorne.",
+            "Non utilizzare l’autorità del ruolo per ottenere vantaggi impropri o limitare ingiustificatamente il gioco altrui."
+          ]
+        },
+        {
+          "id": "r-2",
+          "icon": "🕰️",
+          "title": "Presenza, puntualità e sostituzioni",
+          "intro": "L’affidabilità dei docenti permette agli studenti di seguire un percorso didattico continuativo.",
+          "points": [
+            "Rispettare il calendario scolastico e gli impegni assunti.",
+            "Segnalare tempestivamente ritardi, assenze e impossibilità a svolgere una lezione.",
+            "Collaborare, quando possibile, all’organizzazione delle supplenze."
+          ]
+        },
+        {
+          "id": "r-3",
+          "icon": "📢",
+          "title": "Svolgimento e avvio delle lezioni",
+          "intro": "Gli orari devono restare coordinati tra tutte le Case.",
+          "points": [
+            "Ogni lezione dura 15 minuti; tra una lezione e la successiva sono previsti 10 minuti per gli spostamenti.",
+            "Prima di annunciare la lezione, il docente deve trovarsi nell’aula prevista.",
+            "L’avvio deve essere comunicato obbligatoriamente con /sonoruslezione, separatamente per ciascuna Casa coinvolta."
+          ]
+        },
+        {
+          "id": "r-4",
+          "icon": "📚",
+          "title": "Preparazione e contenuti didattici",
+          "intro": "Le lezioni devono essere credibili, accessibili e adatte al percorso degli studenti.",
+          "points": [
+            "Preparare in anticipo gli argomenti e proporre spiegazioni comprensibili e coinvolgenti.",
+            "Rispettare la progressione delle conoscenze magiche senza attribuire agli studenti capacità avanzate non giustificate.",
+            "Favorire la partecipazione attiva evitando lezioni composte soltanto da monologhi."
+          ]
+        },
+        {
+          "id": "r-5",
+          "icon": "🎭",
+          "title": "Condotta RP e gestione degli studenti",
+          "intro": "La disciplina scolastica si esercita nel rispetto delle regole del Roleplay.",
+          "points": [
+            "Distinguere sempre gli eventi IC dalle questioni OOC.",
+            "Evitare Metagame, Powergame, favoritismi e abusi di autorità.",
+            "Motivare richiami e punizioni IC con fatti accaduti realmente in Roleplay; le questioni OOC vanno gestite nei canali appropriati."
+          ]
+        },
+        {
+          "id": "r-6",
+          "icon": "🏆",
+          "title": "Punti Casa",
+          "intro": "L’assegnazione dei punti deve premiare il merito e non le preferenze personali.",
+          "points": [
+            "Assegnare punti in modo chiaro, equo e coerente, con una motivazione valida.",
+            "Premiare impegno, partecipazione, comportamento e iniziative meritevoli.",
+            "È vietato attribuire punti arbitrariamente o favorire una Casa. Il massimo assegnabile è di 10 punti per singola Casa."
+          ]
+        },
+        {
+          "id": "r-7",
+          "icon": "🤝",
+          "title": "Collaborazione e iniziative",
+          "intro": "Il Corpo Docenti opera in maniera coordinata, nel rispetto delle responsabilità di ciascuno.",
+          "points": [
+            "Collaborare con i colleghi, i supplenti e la Direzione Scolastica.",
+            "Concordare con lo Staff eventi straordinari, ricompense particolari o iniziative che incidano significativamente sul gioco.",
+            "Evitare di imporre ad altri personaggi esiti o conseguenze non concordati."
+          ]
+        },
+        {
+          "id": "r-8",
+          "icon": "⚖️",
+          "title": "Inosservanze e provvedimenti",
+          "intro": "Le eventuali problematiche saranno esaminate secondo la loro gravità e frequenza.",
+          "points": [
+            "Assenze ripetute senza comunicazione, violazioni delle disposizioni o comportamenti scorretti possono essere valutati dalla Direzione Scolastica e dallo Staff.",
+            "In base ai casi possono essere adottati richiami, sospensioni o rimozioni dall’incarico.",
+            "Le presenti disposizioni si applicano sia ai docenti titolari sia ai professori supplenti."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "linee-guida",
+      "label": "Linee guida",
+      "kicker": "Buone pratiche didattiche",
+      "title": "Linee guida del Corpo Docenti",
+      "description": "Un riferimento pratico per insegnare, gestire la classe e creare opportunità di Roleplay per tutti gli studenti.",
+      "sections": [
+        {
+          "id": "g-1",
+          "icon": "📚",
+          "title": "Preparazione delle lezioni",
+          "intro": "",
+          "points": [
+            "Ogni professore deve preparare anticipatamente gli argomenti delle proprie lezioni.",
+            "Le spiegazioni devono essere comprensibili, coinvolgenti e adatte al livello di preparazione degli studenti.",
+            "È consigliato alternare teoria, dimostrazioni, domande e piccole attività pratiche.",
+            "Evitare lezioni basate esclusivamente su lunghi monologhi.",
+            "Gli insegnamenti devono rispettare la lore di Nightfall, la Riforma Hawthorne e la progressione delle conoscenze magiche."
+          ]
+        },
+        {
+          "id": "g-2",
+          "icon": "🕰️",
+          "title": "Orari e organizzazione",
+          "intro": "",
+          "points": [
+            "Ogni lezione ha una durata prevista di 15 minuti.",
+            "Tra una lezione e la successiva sono previsti 10 minuti per consentire gli spostamenti.",
+            "I professori devono rispettare gli orari indicati nel calendario scolastico.",
+            "Eventuali ritardi, assenze o impossibilità a svolgere una lezione devono essere comunicati tempestivamente al Corpo Docenti.",
+            "In caso di assenza, è necessario favorire l’organizzazione di una sostituzione, quando possibile."
+          ]
+        },
+        {
+          "id": "g-3",
+          "icon": "📢",
+          "title": "Comunicazione delle lezioni",
+          "intro": "",
+          "points": [
+            "L’avvio delle lezioni deve essere comunicato obbligatoriamente attraverso il comando /sonoruslezione.",
+            "Il professore deve trovarsi fisicamente nell’aula prevista prima di effettuare l’annuncio.",
+            "Se la lezione coinvolge più Case, il comando deve essere utilizzato separatamente per ciascuna Casa.",
+            "È responsabilità del docente assicurarsi che gli studenti ricevano indicazioni corrette sull’aula da raggiungere."
+          ]
+        },
+        {
+          "id": "g-4",
+          "icon": "🎭",
+          "title": "Interpretazione del personaggio",
+          "intro": "",
+          "points": [
+            "Ogni professore deve mantenere un comportamento coerente con il proprio Background e con l’ambientazione del 1890.",
+            "È necessario distinguere sempre le informazioni IC da quelle OOC.",
+            "Il ruolo di docente non autorizza comportamenti di Powergame, Metagame o abusi di autorità.",
+            "I professori devono favorire la creazione di situazioni RP, lasciando agli studenti la possibilità di interagire e sviluppare il proprio personaggio."
+          ]
+        },
+        {
+          "id": "g-5",
+          "icon": "🎓",
+          "title": "Gestione degli studenti",
+          "intro": "",
+          "points": [
+            "Tutti gli studenti devono avere la possibilità di partecipare alle attività scolastiche.",
+            "Il professore deve mantenere autorevolezza senza utilizzare il proprio ruolo per limitare ingiustificatamente il gioco altrui.",
+            "Richiami, punizioni e provvedimenti disciplinari IC devono avere motivazioni coerenti con quanto accaduto in Roleplay.",
+            "È importante valorizzare l’impegno, la curiosità e la partecipazione degli studenti.",
+            "Eventuali problematiche OOC devono essere affrontate attraverso i canali appropriati, senza trasformarle in conseguenze IC."
+          ]
+        },
+        {
+          "id": "g-6",
+          "icon": "🏆",
+          "title": "Assegnazione dei punti Casa",
+          "intro": "",
+          "points": [
+            "I punti Casa devono essere assegnati secondo criteri chiari, equi e motivati.",
+            "Possono essere utilizzati per premiare partecipazione, impegno, comportamento e iniziative meritevoli.",
+            "È vietato favorire una Casa per amicizie, preferenze personali o appartenenza.",
+            "Non è consentito assegnare punti arbitrariamente.",
+            "Il limite massimo assegnabile è di 10 punti per singola Casa.",
+            "Ogni assegnazione deve avere una motivazione valida e coerente con il contesto RP."
+          ]
+        },
+        {
+          "id": "g-7",
+          "icon": "🤝",
+          "title": "Collaborazione tra docenti",
+          "intro": "",
+          "points": [
+            "I professori sono tenuti a mantenere un rapporto collaborativo e rispettoso con i colleghi.",
+            "È incoraggiato organizzare lezioni condivise, attività interdisciplinari ed eventi scolastici, previo coordinamento.",
+            "Eventuali divergenze organizzative devono essere affrontate privatamente e con rispetto.",
+            "I professori supplenti devono attenersi alle stesse linee guida dei docenti titolari."
+          ]
+        },
+        {
+          "id": "g-8",
+          "icon": "✨",
+          "title": "Creatività e iniziative",
+          "intro": "",
+          "points": [
+            "I docenti sono incoraggiati a proporre attività, esercitazioni, ricerche, piccoli eventi e iniziative legate alla propria materia.",
+            "Le attività devono offrire opportunità di gioco senza imporre risultati o conseguenze agli studenti.",
+            "Eventi straordinari, ricompense particolari o iniziative che incidano significativamente sul gioco devono essere concordati con lo Staff.",
+            "Ogni iniziativa deve rimanere coerente con l’ambientazione e con le possibilità offerte dal server."
+          ]
+        },
+        {
+          "id": "g-9",
+          "icon": "⚖️",
+          "title": "Responsabilità e provvedimenti",
+          "intro": "",
+          "points": [
+            "Il ruolo di professore richiede affidabilità, disponibilità e rispetto degli impegni assunti.",
+            "Assenze ripetute senza comunicazione, mancato rispetto delle disposizioni o comportamenti scorretti potranno essere valutati dalla Direzione Scolastica e dallo Staff.",
+            "In base alla gravità o alla ripetizione delle problematiche, potranno essere adottati richiami, sospensioni dall’incarico o rimozioni dal Corpo Docenti."
+          ]
+        },
+        {
+          "id": "g-10",
+          "icon": "🏰",
+          "title": "Obiettivo del Corpo Docenti",
+          "intro": "Un buon professore non è soltanto colui che insegna, ma colui che riesce a creare opportunità di Roleplay per gli altri.",
+          "points": [
+            "L’obiettivo del Corpo Docenti è rendere Hogwarts un ambiente vivo, coinvolgente e organizzato, nel quale ogni studente possa sviluppare il proprio percorso magico."
+          ]
+        }
+      ]
+    }
+  ]
+}
