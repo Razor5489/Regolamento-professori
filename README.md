@@ -1,93 +1,57 @@
-# Nightfall RP — Regolamento Professori
+# NIGHTFALL RP · Regolamento Professori
 
-Sito ufficiale del **Regolamento e delle Linee guida del Corpo Docenti di Hogwarts (1890)**.
+Il regolamento e le linee guida del Corpo Docenti di Hogwarts (1890).
 
-- Sito pubblico: https://razor5489.github.io/Regolamento-professori/
-- Repository: https://github.com/Razor5489/Regolamento-professori
+**Sito pubblico:** https://razor5489.github.io/Regolamento-professori/
 
-## Funzioni
+## Cosa offre il sito
 
-- Regolamento completo e dieci capitoli di linee guida.
-- Ricerca, indice dei capitoli, stampa e salvataggio in PDF.
-- **Gestisci regolamento**: accesso con password, modifica dei titoli, delle regole e della premessa, creazione/eliminazione/riordino di capitoli.
-- Bozza e backup, più pubblicazione online sul ramo `main`.
+- 8 capitoli di regolamento, 10 capitoli di linee guida.
+- Indice, ricerca e stampa/PDF.
+- Pulsante **Gestisci regolamento** con accesso tramite **password**.
+- Editor per modificare, aggiungere, cancellare e riordinare capitoli.
+- Bozze, backup JSON e pubblicazione nel repository GitHub.
 
-## Alternativa semplificata: pubblicazione tramite Vercel
+## Attivare la gestione con password
 
-Il repository contiene ora anche la versione del servizio dedicata a **Vercel** (`api/login.js`, `api/document.js`). Vercel può ospitare il sito e le due funzioni di autenticazione, mentre l'indirizzo GitHub Pages resta quello visibile agli utenti.
+Il sito pubblico è ospitato su GitHub Pages. GitHub Pages non può conservare in modo sicuro una password o aggiornare da solo un repository: per la gestione protetta serve un piccolo backend. Il codice è già pronto, ma va pubblicato su un servizio di hosting.
 
-1. Collega l'app **Vercel** in ChatGPT e autorizzala a gestire il repository `Razor5489/Regolamento-professori`.
-2. Importa o distribuisci questo repository come progetto Vercel, senza modificare la cartella root.
-3. Nelle variabili d'ambiente protette del progetto configura `ADMIN_PASSWORD` (password personale da te scelta) e `GITHUB_TOKEN` (token fine-grained limitato al repository, permesso **Contents: Read and write**). **Non inserire mai queste credenziali in un file pubblico o in chat.**
-4. Collega l'URL HTTPS assegnato da Vercel nel file `config.json`, campo `apiUrl`. Per esempio: `{"apiUrl":"https://nome-progetto.vercel.app"}` (solo esempio, occorre l'URL effettivo).
+### Percorso consigliato: Vercel
 
-Il sistema userà direttamente la password, come la Biblioteca. Gli utenti vedranno il sito pubblico da GitHub Pages, mentre la modifica passerà dal backend Vercel.
+Il codice del backend è nei file `api/login.js`, `api/document.js` e `api/_shared.cjs`.
 
-La password attuale della Biblioteca non è leggibile dal suo repository. Per usare la **stessa password**, dovrai impostare tu lo stesso valore segreto nel nuovo servizio. Questa procedura non richiede di comunicare la password all'assistente.
-
----
-
-### Importante: attivazione dell'accesso con password
-
-Il pulsante ora richiede una **password**, non più un Personal Access Token GitHub. Per evitare che la password sia visibile a chiunque (il repository è pubblico), l'autenticazione deve essere eseguita da un backend protetto.
-
-Il backend è già preparato in `worker/index.js`, ma **non si attiva da solo con il caricamento su GitHub**. Occorre distribuirlo una volta su Cloudflare Workers e aggiungere due segreti.
-
-### 1. Creare un Worker Cloudflare
-
-1. Accedi al tuo account su https://dash.cloudflare.com/ (puoi crearne uno se necessario).
-2. Apri **Workers & Pages**, scegli **Create** e crea un Worker (ad esempio `nightfall-professori-api`).
-3. Nell'editor del Worker sostituisci il codice con **tutto il contenuto del file** `worker/index.js` presente in questo repository.
-4. Pubblica il Worker. Ottieni un URL HTTPS simile a `https://nightfall-professori-api.<tuo-sottodominio>.workers.dev`. L'URL vero ti verrà mostrato da Cloudflare; non usare l'esempio letterale.
-
-In alternativa, chi usa Wrangler può eseguire dalla cartella `worker/` il comando `npx wrangler deploy`.
-
-### 2. Impostare la password e il token GitHub come segreti
-
-Apri le impostazioni del Worker, quindi **Settings → Variables and Secrets** (la denominazione può variare) e aggiungi due valori di tipo **Secret**:
-
-- `ADMIN_PASSWORD` = la password di accesso al pannello, scelta da te (può essere la stessa della Biblioteca, senza comunicarla ad altri).
-- `GITHUB_TOKEN` = un token GitHub fine-grained, autorizzato a modificare soltanto il repository `Regolamento-professori`.
-
-Per creare il token:
-1. Vai su GitHub → **Settings → Developer settings → Personal access tokens → Fine-grained tokens**.
-2. Seleziona **Only select repositories** e spunta **Regolamento-professori**.
-3. In **Repository permissions**, imposta **Contents → Read and write**. La lettura dei metadata è concessa automaticamente.
-4. Crea il token e incollalo **soltanto nel segreto `GITHUB_TOKEN` del Worker**, mai nel repository, nella pagina web o nella chat.
-
-Utilizza una password lunga e unica. Per ulteriore sicurezza, configura in Cloudflare una regola di limitazione dei tentativi di accesso al percorso `/api/login`.
-
-### 3. Collegare il Worker al sito
-
-1. Apri il file `config.json` nel repository su GitHub e scegli **Edit**.
-2. Sostituisci il valore vuoto di `apiUrl` con **l'URL HTTPS reale del Worker**:
+1. Collega Vercel e importa il repository `Razor5489/Regolamento-professori` come progetto.
+2. Configura **due variabili segrete**, nelle impostazioni del progetto Vercel:
+   - `ADMIN_PASSWORD`: una password forte scelta da te. Se vuoi la stessa della Biblioteca Nightfall, impostala uguale **privatamente nelle impostazioni**, senza comunicarla in chat.
+   - `GITHUB_TOKEN`: un token **fine-grained** del tuo account GitHub, con accesso **solo** a `Regolamento-professori` e permesso **Contents: Read and write**.
+3. Pubblica il progetto Vercel, ricava il suo URL HTTPS reale.
+4. In GitHub apri `config.json` e imposta `apiUrl` con quell'URL (senza slash finale):
 
 ```json
-{
-  "apiUrl": "https://IL-TUO-WORKER.workers.dev"
-}
+{"apiUrl":"https://nome-reale-progetto.vercel.app"}
 ```
 
-3. Salva con **Commit changes** e aspetta l'aggiornamento di GitHub Pages.
-4. Apri il sito e scegli **Gestisci regolamento**. Inserisci `ADMIN_PASSWORD` (non il token GitHub), apporta una modifica e premi **Pubblica online**.
+5. Pubblica la modifica. Dopo l'aggiornamento di GitHub Pages, il tasto **Gestisci regolamento** userà la password.
 
-La password è verificata dal Worker e resta soltanto nella memoria della pagina finché è aperta. **Non è contenuta nell'HTML, nel JavaScript pubblico, in `config.json` o nel repository**. Il token GitHub non viene mai inviato al browser.
+Il token resta **solo sul server**, in una variabile segreta Vercel. Il browser trasmette la password al server su HTTPS per l'autenticazione; la password non è scritta nell'HTML o salvata in localStorage.
 
-### 4. Attivare GitHub Pages (se non è già attivo)
+### Come creare il token GitHub
 
-1. Apri **Settings → Pages** nel repository.
-2. In **Build and deployment**, scegli **Deploy from a branch**.
-3. Seleziona **main** e **/(root)**, quindi salva.
+GitHub → Settings → Developer settings → Personal access tokens → Fine-grained tokens → Generate new token. Seleziona **Only select repositories → Regolamento-professori** e **Repository permissions → Contents: Read and write**. Conserva il token soltanto nelle variabili segrete del backend e revocalo se viene esposto.
 
-### Struttura dei file
+### Alternativa: Cloudflare Workers
 
-- `index.html`: sito pubblico e pannello di modifica.
-- `regolamento.json`: contenuti del regolamento e delle linee guida.
-- `config.json`: URL pubblico del backend, **non** la password.
-- `worker/index.js`: backend Cloudflare Worker, verifica della password e pubblicazione su GitHub.
-- `worker/wrangler.toml`: configurazione Wrangler opzionale.
-- `.nojekyll`: compatibilità con GitHub Pages.
+È disponibile anche una versione del backend in `worker/index.js`, con il file `worker/wrangler.toml`. Puoi distribuirla su Cloudflare Workers e configurare lì gli stessi segreti `ADMIN_PASSWORD` e `GITHUB_TOKEN`, quindi impostare il suo URL in `config.json`.
 
-**Nota:** senza distribuire il Worker e compilare `config.json`, il sito pubblico resta consultabile e il pannello mostra un messaggio che spiega che il servizio password non è ancora configurato. Questo evita una falsa protezione basata su password scritte nel codice pubblico.
+## File importanti
+
+- `index.html`: sito pubblico ed editor.
+- `regolamento.json`: testi del regolamento e delle linee guida.
+- `config.json`: solo l'URL pubblico del servizio backend, **nessuna password**.
+- `api/`: backend Vercel.
+- `worker/`: backend Cloudflare alternativo.
+- `.nojekyll`: compatibilità GitHub Pages.
+
+**Stato:** il modulo password e il backend sono pronti nel codice. L'accesso funzionerà soltanto dopo che sarà stato attivato un servizio backend e configurato l'URL in `config.json`.
 
 *Creato per NightFall da Razor.*
