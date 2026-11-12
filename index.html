@@ -57,10 +57,10 @@ dialog{border:1px solid #a68a58;background:#f7f0df;color:var(--ink);padding:0;wi
  <div class="modal-head"><h2 id="adminHeading">Gestione del regolamento</h2><button id="closeAdmin" class="close" aria-label="Chiudi" type="button">×</button></div>
  <div class="modal-body">
   <section id="authGate" class="login-box">
-   <p>Questa sezione è riservata ai responsabili autorizzati. Per pubblicare modifiche è necessario accedere con un <strong>token GitHub</strong> limitato a questo repository; non è una password memorizzata nel sito.</p>
-   <form id="loginForm"><label class="field"><span>Token di accesso GitHub (fine-grained)</span><input id="adminToken" type="password" autocomplete="off" spellcheck="false" required placeholder="github_pat_…"></label><p class="help">Impostazioni GitHub → Developer settings → Personal access tokens → Fine-grained tokens. Seleziona soltanto il repository <strong>Regolamento-professori</strong> e concedi <strong>Contents: Read and write</strong>. Il token resta in memoria solo finché la pagina rimane aperta.</p><div class="actions"><button id="loginBtn" type="submit" class="btn primary">Accedi alla gestione</button></div><p id="loginStatus" class="state" role="status"></p></form>
+   <p>Inserisci la <strong>password di gestione</strong> per aggiungere, modificare o eliminare i capitoli del Regolamento e delle Linee guida.</p>
+   <form id="loginForm"><label class="field"><span>Password di gestione</span><input id="adminPassword" type="password" autocomplete="current-password" maxlength="256" required placeholder="Inserisci la password"></label><p class="help">La password viene verificata dal servizio protetto, non è pubblicata nel codice del sito e non viene salvata nel browser.</p><div class="actions"><button id="loginBtn" type="submit" class="btn primary">Accedi</button></div><p id="loginStatus" class="state" role="status"></p></form>
   </section>
-  <section id="editorPanel" hidden>
+    <section id="editorPanel" hidden>
    <div class="editor-header"><div><h3>Il registro del Corpo Docenti</h3><span class="success-hint">Puoi modificare titoli, testi, singole sezioni e ordine dei capitoli.</span></div><div class="actions"><button id="exportBtn" class="btn" type="button">Scarica backup</button><button id="logoutBtn" class="btn" type="button">Esci</button></div></div>
    <label class="field"><span>Documento da modificare</span><select id="editorPage"><option value="regolamento">Regolamento</option><option value="linee-guida">Linee guida</option></select></label>
    <div class="editor-card" style="margin-bottom:20px">
@@ -97,9 +97,7 @@ dialog{border:1px solid #a68a58;background:#f7f0df;color:var(--ink);padding:0;wi
 </dialog>
 <script>
 "use strict";
-const REPO = "Razor5489/Regolamento-professori";
-const FILE = "regolamento.json";
-const API = "https://api.github.com/repos/" + REPO + "/contents/" + FILE;
+let SERVICE_URL = ""; // Caricato da config.json: URL pubblico del servizio autenticato.
 const $ = id => document.getElementById(id);
 let state = null;
 let published = null;
@@ -175,30 +173,27 @@ function render() {
  refreshDraft();
 }
 function setStatus(message, id="editorStatus") { $(id).textContent = message; }
-function readUtf8Base64(str) {
- const decoded = atob(str.replace(/\s/g,""));
- const buf = Uint8Array.from(decoded, char => char.charCodeAt(0));
- return new TextDecoder().decode(buf);
+function encodePassword(value) {
+ const bytes=new TextEncoder().encode(value);
+ let binary="";
+ for(let i=0;i<bytes.length;i+=8192)binary+=String.fromCharCode(...bytes.subarray(i,i+8192));
+ return btoa(binary);
 }
-function encodeUtf8Base64(str) {
- const buf = new TextEncoder().encode(str);
- let out = "";
- for(let i=0;i<buf.length;i+=8192) out += String.fromCharCode(...buf.subarray(i,i+8192));
- return btoa(out);
-}
-async function ghFetch(url,options={}) {
- const headers = {"Accept":"application/vnd.github+json","Authorization":"Bearer " + secret,"X-GitHub-Api-Version":"2022-11-28"};
- const response = await fetch(url,{...options,headers:{...headers,...options.headers},cache:"no-store"});
+async function api(path,method="GET",body,password=secret) {
+ if(!SERVICE_URL) throw new Error("Gestione con password non ancora attiva: è necessario collegare il servizio di autenticazione (config.json).");
+ const headers={"Accept":"application/json"};
+ if(password!==null)headers.Authorization="Bearer "+encodePassword(password);
+ if(body!==undefined)headers["Content-Type"]="application/json";
+ const response=await fetch(SERVICE_URL+path,{method,headers,body:body===undefined?undefined:JSON.stringify(body),cache:"no-store"});
  let value;
- try {value=await response.json();}catch {value={};}
- if(!response.ok) {const error=new Error(value.message || "Errore durante l’operazione GitHub.");error.status=response.status;throw error;}
+ try{value=await response.json();}catch{value={};}
+ if(!response.ok){const error=new Error(value.error||"Impossibile completare l'operazione.");error.status=response.status;throw error;}
  return value;
 }
-async function loadFromGitHub() {
- const file = await ghFetch(API + "?t=" + Date.now());
- const content = JSON.parse(readUtf8Base64(file.content));
- if(!valid(content)) throw new Error("Il documento online non è nel formato previsto.");
- return {content,sha:file.sha};
+async function loadFromService(password=secret) {
+ const result=await api("/api/document","GET",undefined,password);
+ if(!valid(result.document)||typeof result.sha!=="string")throw new Error("Documento ricevuto non valido.");
+ return {content:result.document,sha:result.sha};
 }
 function resetSectionForm() {
  editingId = null;
@@ -268,7 +263,7 @@ function openManager() {
  $("authGate").hidden=!!secret;
  $("editorPanel").hidden=!secret;
  if(secret) fillEditor();
- else {$("loginStatus").textContent="";$("adminToken").value="";}
+ else {$("loginStatus").textContent="";$("adminPassword").value="";}
 }
 $("tab-regolamento").onclick=()=>showPage("regolamento");
 $("tab-linee-guida").onclick=()=>showPage("linee-guida");
@@ -276,28 +271,28 @@ $("search").oninput=render;
 $("printBtn").onclick=()=>window.print();
 $("manageBtn").onclick=openManager;
 $("closeAdmin").onclick=()=>$("adminDialog").close();
-$("adminDialog").addEventListener("close",()=>{$("adminToken").value="";});
+$("adminDialog").addEventListener("close",()=>{$("adminPassword").value="";});
 $("loginForm").onsubmit=async event => {
  event.preventDefault();
- if(busy) return;
- const entered=$("adminToken").value.trim();
- if(!entered) return;
- secret=entered;
- busy=true;$("loginBtn").disabled=true;setStatus("Verifica dei permessi in corso…","loginStatus");
+ if(busy)return;
+ const entered=$("adminPassword").value;
+ if(!entered)return;
+ busy=true;$("loginBtn").disabled=true;setStatus("Verifica della password in corso…","loginStatus");
  try {
-  const remote=await loadFromGitHub();
-  if(dirty() && JSON.stringify(published)!==JSON.stringify(remote.content))
-   throw new Error("Il documento online è cambiato durante la tua bozza. Esporta un backup prima di ricaricare il sito.");
-  const hadDraft = !!dirty();
-  blobSha=remote.sha;
-  published=clone(remote.content);
-  if(!hadDraft) state=clone(remote.content);
+  await api("/api/login","POST",undefined,entered);
+  const remote=await loadFromService(entered);
+  if(dirty()&&JSON.stringify(published)!==JSON.stringify(remote.content))
+   throw new Error("Il documento online è cambiato durante la tua bozza. Scarica prima un backup e ricarica il sito.");
+  const hadDraft=!!dirty();
+  blobSha=remote.sha;published=clone(remote.content);
+  if(!hadDraft)state=clone(remote.content);
+  secret=entered;
   $("authGate").hidden=true;$("editorPanel").hidden=false;
-  fillEditor();render();setStatus("Accesso riuscito. Puoi preparare modifiche e pubblicarle su GitHub.");
+  fillEditor();render();setStatus("Accesso effettuato. Puoi modificare e pubblicare il regolamento.");
  }catch(error) {
   secret=null;
-  setStatus(error.status===401?"Token non valido o non autorizzato.":error.status===403?"Il token non ha accesso a questo repository.":error.message,"loginStatus");
- }finally {busy=false;$("loginBtn").disabled=false;$("adminToken").value="";}
+  setStatus(error.status===401?"Password errata. Riprova.":error.message||"Servizio non disponibile.","loginStatus");
+ }finally {busy=false;$("loginBtn").disabled=false;$("adminPassword").value="";}
 };
 $("logoutBtn").onclick=()=>{secret=null;$("editorPanel").hidden=true;$("authGate").hidden=false;$("adminDialog").close();};
 $("editorPage").onchange=()=>{editorPage=$("editorPage").value;fillEditor();setStatus("");};
@@ -344,26 +339,38 @@ $("exportBtn").onclick=()=>{
  setTimeout(()=>URL.revokeObjectURL(url),1000);
 };
 $("publishBtn").onclick=async()=>{
- if(busy) return;
+ if(busy)return;
  if(!dirty()){setStatus("Non ci sono modifiche da pubblicare.");return;}
  if(!secret){setStatus("Accedi nuovamente alla gestione.");return;}
- if(!confirm("Pubblicare tutte le modifiche su GitHub, rendendole visibili agli studenti e ai docenti?"))return;
+ if(!confirm("Pubblicare tutte le modifiche su GitHub, rendendole visibili a studenti e docenti?"))return;
  busy=true;$("publishBtn").disabled=true;setStatus("Controllo della versione e pubblicazione in corso…");
- try{
-  const remote=await loadFromGitHub();
-  if(remote.sha!==blobSha) throw new Error("Il documento è stato aggiornato da un'altra persona. Scarica il backup e ricarica il sito prima di procedere.");
+ try {
+  const remote=await loadFromService();
+  if(remote.sha!==blobSha)throw new Error("Il documento è stato aggiornato da un'altra persona. Scarica un backup e ricarica il sito.");
   state.updatedAt=new Date().toISOString().slice(0,10);
-  const payload={message:"Aggiorna regolamento professori tramite editor Nightfall",content:encodeUtf8Base64(JSON.stringify(state,null,2)+"\n"),sha:remote.sha,branch:"main"};
-  const response=await ghFetch(API,{method:"PUT",headers:{"Content-Type":"application/json"},body:JSON.stringify(payload)});
-  blobSha=response.content.sha;
-  published=clone(state);render();setStatus("Modifiche pubblicate correttamente su GitHub. GitHub Pages mostrerà la nuova versione dopo l'aggiornamento del sito.");
- }catch(error){
-  if(error.status===401 || error.status===403) {secret=null;setStatus("Autorizzazione scaduta o insufficiente. Chiudi e riapri la gestione per accedere di nuovo.");}
-  else setStatus(error.message||"Pubblicazione non riuscita. La bozza è ancora disponibile.");
- }finally {busy=false;$("publishBtn").disabled=false;}
+  const result=await api("/api/document","PUT",{document:state,sha:remote.sha});
+  blobSha=result.sha;published=clone(state);render();
+  setStatus("Modifiche pubblicate su GitHub. Il sito pubblico verrà aggiornato da GitHub Pages.");
+ }catch(error) {
+  if(error.status===401||error.status===403){
+   secret=null;
+   setStatus("Password non valida o accesso scaduto. Chiudi e riapri la gestione per accedere nuovamente.");
+  }else setStatus(error.message||"Pubblicazione non riuscita. La bozza è ancora disponibile.");
+ }finally{busy=false;$("publishBtn").disabled=false;}
 };
 window.addEventListener("beforeunload",event=>{if(dirty()){event.preventDefault();event.returnValue="";}});
 (async function boot(){
+ try{
+  const cfgResponse=await fetch("./config.json?ts="+Date.now(),{cache:"no-store"});
+  if(cfgResponse.ok){
+   const config=await cfgResponse.json();
+   if(typeof config.apiUrl==="string" && config.apiUrl.trim()){
+    const url=new URL(config.apiUrl.trim());
+    if(url.protocol==="https:" && !url.username && !url.password && !url.search && !url.hash)
+     SERVICE_URL=url.href.replace(/\/+$/,"");
+   }
+  }
+ }catch{SERVICE_URL="";}
  try{
   const response=await fetch("./regolamento.json?ts="+Date.now(),{cache:"no-store"});
   if(!response.ok)throw new Error("File regolamento.json non disponibile.");
